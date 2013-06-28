@@ -4,15 +4,18 @@
 	* Ublue jQuery Image Carousel
 	* Copyright (c) 2013, 梦幻神化
 	* Create:2013.06.03
-	* Version:1.3
+	* Version:1.3.1
 	* Update:1.3（1.增加小按钮的触发条件 2.性能优化，小按钮和滚动标题，鼠标停留150ms后才执行）
+	* Update:1.3.1（1.语句优化）
+	* Update:1.3.2（1.兼容性调整）
 	*
 	* 请保留此信息，如果您有修改或意见可通过网站给我留言
 	* http://www.bluesdream.com
 	*/
 	$.fn.ublue_ImageCarousel=function(opts){
 		var $this = $(this);
-		var defaults = {
+		// options
+		var opts = $.extend({
 			// Dom节点
 			ubMain:".focusMain",		// 最外层框架
 			ubCon:".focusCon",		// 内容和定位层
@@ -31,9 +34,7 @@
 			ubTime:5000,				// 自动播放的时间间隔
 			ubSpeed:400,				// 图片切换的速度
 			ubTitleSpeed:50			// 标题滑动显示的速度
-		};
-		// options
-		var opts = $.extend(defaults, opts);
+		}, opts);
 		var $stpe = 0,
 			$ubCon 		= $this.find(opts.ubCon),
 			$ubItem 		= $this.find(opts.ubItem),
