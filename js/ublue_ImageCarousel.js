@@ -4,10 +4,11 @@
 	* Ublue jQuery Image Carousel
 	* Copyright (c) 2013, 梦幻神化
 	* Create:2013.06.03
-	* Version:1.3.1
-	* Update:1.3（1.增加小按钮的触发条件 2.性能优化，小按钮和滚动标题，鼠标停留150ms后才执行）
-	* Update:1.3.1（1.语句优化）
-	* Update:1.3.2（1.兼容性调整）
+	* Version:1.3.3 beta
+	* Update:1.3.0 beta（1.增加小按钮的触发条件 2.性能优化，小按钮和滚动标题，鼠标停留150ms后才执行）
+	* Update:1.3.1 beta（1.语句优化）
+	* Update:1.3.2 beta（1.兼容性调整）
+	* Update:1.3.3 beta（1.修复一个错误的判断条件）
 	*
 	* 请保留此信息，如果您有修改或意见可通过网站给我留言
 	* http://www.bluesdream.com
@@ -154,8 +155,8 @@
 		$this.find(opts.ubNext).click(function() {
 			nextSwitch();
 		});
-		$ubBulletsBtn.each(function(e) {
-			if ( opts.ubHover == "on" ) {
+		if ( opts.ubHover == "on" ) {
+			$ubBulletsBtn.each(function(e) {
 				$(this).hover(function() {
 					hoverTime2 = setTimeout(function() {
 						bulletsSwitch(e);
@@ -163,13 +164,13 @@
 				},function(){
 					clearTimeout(hoverTime2);
 				});
-			}else{
-				$stpe = e;
-				$(this).click(function() {
-					bulletsSwitch(e);
-				})
-			}
-		})
+			})
+		}else{
+			$ubBulletsBtn.click(function() {
+				$stpe = $(this).index();
+				bulletsSwitch($stpe);
+			})
+		}
 	};
 
 	});
