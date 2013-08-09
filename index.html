@@ -3,12 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>Ublue jQuery Image Carousel（焦点图&amp;图片轮播） - 蓝色梦想</title>
-<meta name="keywords" content="jquery,css,css3,image carousel,slideshow,focus image" />
-<meta name="description" content="Ublue jQuery Image Carousel（焦点图&amp;图片轮播）" />
-<meta name="author" id="articleUrl" content="蓝色梦想,www.bluesdream.com/blog/ublue-jquery-image-carousel.html" />
-<link rel="stylesheet" href="http://www.bluesdream.com/case/default.css">
-<script src="http://www.bluesdream.com/case/default.js"></script>
-
 <link rel="stylesheet" href="css/ublue_ImageCarousel.css" />
 <script src="http://file.bluesdream.com/js/jquery-1.8.3.min.js"></script>
 <script src="js/ublue_ImageCarousel.js"></script>
@@ -17,55 +11,63 @@ $(function() {
 	/* 设置和说明：
 	=====================================================
 	// Dom节点
-	ubMain:".focusMain",		// 最外层框架
-	ubCon:".focusCon",		// 内容和定位层
-	ubItem:".item",				// 列表项
-	ubBullets:".focusBullets",	// 小按钮
-	ubPrev:".focusPrev",		// 向上按钮
-	ubNext:".focusNext",		// 向下按钮
+	ubCon:".focusCon",				// 内容（滚动时以该层做定位）
+	ubItem:".item",						// 列表项
+	ubIndicators:".focusIndicators",	// 小按钮
+	ubPrev:".focusPrev",				// 向上按钮
+	ubNext:".focusNext",				// 向下按钮
 	// 效果展现 （开启/关闭参数：on/off）
-	ubLen:"off",				// 多图滚动（需配合ubDistance一起使用）
-	ubDistance:"off",			// 多图滚动（滚动距离按每行最大显示容量计算）
-	ubAuto:"on",				// 是否自动播放
-	ubTitleHide:"off",			// 标题是否滑动显示
-	ubEffect:"off",				// 是否使用滤镜效果
-	ubHover:"on",				// 小按钮经触发条件（on为鼠标经过，off为鼠标点击）
+	ubEffect:"left",						// 效果呈现方式 "left" "top" "fade"
+	ubTrigger:"hover",					// 小按钮经触发条件 "hover" "click"
+	ubAutoPlay:"on",					// 是否自动播放
+	ubAutoBtn:"on",					// 小按钮是否自动生成（便于做成缩略图形式）
+	ubTitleHover:"off",					// 标题是否滑动显示
+	ubMode:"off",						// 是否开启多图滚动
 	// 时间设置 （按毫秒计算：1000毫秒=1秒）
-	ubTime:5000,				// 自动播放的时间间隔
-	ubSpeed:500,				// 图片切换的速度
-	ubTitleSpeed:50			// 标题滑动显示的速度
+	ubTime:5000,						// 自动播放的时间间隔
+	ubSpeed:400,						// 图片切换的速度
+	ubTitleSpeed:50					// 标题滑过显示的速度
 	=====================================================
 	*/
-	$("#demoA").ublue_ImageCarousel({
+	$(".demoA").ublue_ImageCarousel();
+
+	$(".demoB").ublue_ImageCarousel({
+		ubAutoPlay:"off", // 取消自动滚动
 		ubTitleHover:"on" // 标题hover显示
 	});
 
-	$("#demoB").ublue_ImageCarousel({
-		ubAuto:"off" // 取消自动滚动
+	$(".demoC").ublue_ImageCarousel({
+		ubAutoPlay:"off",  // 取消自动滚动
+		ubMode:"on",  // 多图滚动
+		ubTrigger:"click" // 小按钮点击切换
 	});
 
-	$("#demoC").ublue_ImageCarousel({
-		ubAuto:"off",  // 取消自动滚动
-		ubLen:"on",  // 多图滚动
-		ubDistance:"on"  // 多图滚动
+	$(".demoD").ublue_ImageCarousel({
+		ubAutoPlay:"off" // 取消自动滚动
 	});
 
-	$("#demoD").ublue_ImageCarousel({
-		ubAuto:"off", // 取消自动滚动
-		ubHover:"off" // 小按钮鼠标点击时触发
+	$(".demoE").ublue_ImageCarousel({
+		ubAutoPlay:"off", // 取消自动滚动
+		ubEffect:"top"
 	});
 
-	$("#demoE").ublue_ImageCarousel({
-		ubAuto:"off", // 取消自动滚动
-		ubEffect:"on" // 使用滤镜效果
+	$(".demoF").ublue_ImageCarousel({
+		ubAutoPlay:"off", // 取消自动滚动
+		ubEffect:"fade"
+	});
+
+	$(".demoG").ublue_ImageCarousel({
+		ubAutoPlay:"off", // 取消自动滚动
+		ubEffect:"fade", // 小按钮是否自动生成
+		ubAutoBtn:"off" // 小按钮不自动生成（手工做成缩略图形式）
 	});
 });
 </script>
 </head>
 <body>
 
-<h2>单张滚动：自动滚动、标题hover显示、无左右按钮、鼠标经过小按钮切换</h2>
-<div id="demoA" class="focusMain">
+<h2>A. 图片轮播：单张滚动、自动滚动、无左右按钮</h2>
+<div class="focusMain isCarousel demoA">
 	<div class="focusArea">
 		<div class="focusCon">
 			<div class="item">
@@ -94,12 +96,12 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<div class="focusBullets">
+	<div class="focusIndicators">
 	</div>
 </div>
 
-<h2>单张滚动：无小按钮</h2>
-<div id="demoB" class="focusMain">
+<h2>B. 图片轮播：单张滚动、无小按钮、标题hover显示</h2>
+<div class="focusMain isCarousel demoB">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
@@ -132,8 +134,8 @@ $(function() {
 	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
-<h2>多图滚动</h2>
-<div id="demoC" class="focusMain">
+<h2>C. 图片轮播：多张滚动、小按钮点击切换</h2>
+<div class="focusMain isCarousel demoC">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
@@ -163,13 +165,13 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<div class="focusBullets">
+	<div class="focusIndicators">
 	</div>
 	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
-<h2>自适应单图"滚动"显示、鼠标点击小按钮切换</h2>
-<div id="demoD" class="focusMain">
+<h2>D. 焦点图：左右滚动</h2>
+<div class="focusMain isFocus demoD">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
@@ -199,13 +201,13 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<div class="focusBullets">
+	<div class="focusIndicators">
 	</div>
 	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
-<h2>自适应单图"滚动"显示</h2>
-<div id="demoE" class="focusMain">
+<h2>E. 焦点图：向上下滚动</h2>
+<div class="focusMain isFocus demoE">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
@@ -235,11 +237,89 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<div class="focusBullets">
+	<div class="focusIndicators">
 	</div>
 	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
-<div id="statistics"><script src="http://s9.cnzz.com/stat.php?id=1734797&web_id=1734797" language="JavaScript"></script></div>
+<h2>F. 焦点图：渐变显示</h2>
+<div class="focusMain isFocus demoF">
+	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<div class="focusArea">
+		<div class="focusCon">
+			<div class="item">
+				<h4 class="title"><a href="#">Space base</a></h4>
+				<a href="#"><img src="images/img1.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Festival Hall</a></h4>
+				<a href="#"><img src="images/img2.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
+				<a href="#"><img src="images/img3.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Railroad bridge</a></h4>
+				<a href="#"><img src="images/img4.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Midosuji line</a></h4>
+				<a href="#"><img src="images/img5.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Sky building</a></h4>
+				<a href="#"><img src="images/img6.jpg" alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="focusIndicators">
+	</div>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
+</div>
+
+<h2>G. 焦点图：渐变显示、小按钮(缩略图)手工填写</h2>
+<div class="focusMain isFocus demoG">
+	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<div class="focusArea">
+		<div class="focusCon">
+			<div class="item">
+				<h4 class="title"><a href="#">Space base</a></h4>
+				<a href="#"><img src="images/img1.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Festival Hall</a></h4>
+				<a href="#"><img src="images/img2.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
+				<a href="#"><img src="images/img3.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Railroad bridge</a></h4>
+				<a href="#"><img src="images/img4.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Midosuji line</a></h4>
+				<a href="#"><img src="images/img5.jpg" alt="" /></a>
+			</div>
+			<div class="item">
+				<h4 class="title"><a href="#">Sky building</a></h4>
+				<a href="#"><img src="images/img6.jpg" alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="focusIndicators">
+		<a href="javascript:;"><img src="images/img1.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img2.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img3.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img4.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img5.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img6.jpg" alt="" /></a>
+	</div>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
+</div>
+
+<!-- <div id="statistics"><script src="http://s9.cnzz.com/stat.php?id=1734797&web_id=1734797" language="JavaScript"></script></div> -->
 </body>
 </html>

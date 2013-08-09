@@ -1,58 +1,49 @@
 /* = 全局
 -------------------------------------------------------------- */
+*{margin:0; padding:0;}
 body{ font:12px/18px Arial,\5FAE\8F6F\96C5\9ED1; background:url(../images/bg.png); padding-bottom:100px;}
-h2{ padding:100px 0 20px 0; text-align:center; font-size:16px; color:#444;}
+h2{ padding:80px 0 20px 0; text-align:center; font-size:16px; color:#444;}
+a{ text-decoration:none;}
 
-/* = 整体布局
+/* = 通用布局
 -------------------------------------------------------------- */
-.focusBtn, .focusBullets a{ display:block; background-image:url(../images/script.png); background-repeat:no-repeat;}
-.focusMain{ width:650px; position:relative; margin:0 auto;}
+.focusBtn, .focusIndicators a{ display:block; background:url(../images/script.png); background-repeat:no-repeat;}
+.focusMain{ width:650px; position:relative; margin:0 auto; overflow:hidden;}
 .focusArea{ width:594px; margin:0 auto 15px; position:relative; overflow:hidden;}
 .focusCon{ width:594px; position:absolute; overflow:hidden;}
-.focusCon .item{ margin:0 4px; padding:1px; border:1px solid #666666; background:#DDDEDE; _display:inline;}
-.focusCon .item img{ display:block;}
-.focusCon .title{ height:26px; position:absolute; left:1px; background:#000; opacity:.8; filter:Alpha(opacity=80); line-height:26px; font-size:14px; font-weight:400; overflow: hidden;}
+.focusCon .item{ position:relative; margin:0 4px; padding:1px; border:1px solid #666; background:#DDDEDE;}
+.focusCon .title{ height:26px; position:absolute; left:1px; bottom:1px; background:#000; opacity:.8; filter:Alpha(opacity=80); line-height:26px; font-size:14px; font-weight:400; overflow: hidden;}
 .focusCon .title a{ display:block; padding:0 10px; color:#FFF; position:relative;}
-.focusBullets{ height:7px; font-size:0; line-height:0; text-align:center;}
-.focusBullets a{ display:inline-block; width:7px; height:7px; margin:0 4px; background-position:0 -50px; _background:none; font-size:0; zoom:1; cursor:pointer; overflow:hidden;}
-.focusBullets a:hover, .focusBullets .current{ background-position:-10px -50px;}
-.focusPrev, .focusNext{ display:block; width:24px; height:49px; position:absolute; top:50%; margin-top:-25px; cursor:pointer;}
-.focusPrev{ left:0; background-position:0 0; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/ie6_al.png");}
-.focusNext{ right:0; background-position:-30px 0; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/ie6_ar.png");}
+.focusIndicators{ height:7px; font-size:0; line-height:0; text-align:center;}
+.focusIndicators a{ display:inline-block; width:7px; height:7px; margin:0 4px; background-position:0 -50px; font-size:0; _zoom:1; cursor:pointer; overflow:hidden;}
+.focusIndicators .current{ background-position:-10px -50px;}
+.focusBtn{ display:block; position:absolute; top:50%; width:24px; height:49px; margin-top:-25px; background-color:#606060; cursor:pointer;}
+.focusPrev{ left:0; background-position:0 0;}
+.focusNext{ right:0; background-position:-30px 0;}
+.focusPrev:hover, .focusNext:hover{ background-color:#333;}
+.focusCon .item img, .focusIndicators img{ width:100%; height:100%; }
 
-/* = 主体
+/* = 轮播和焦点图区分
 -------------------------------------------------------------- */
-#demoA { height:152px;}
-#demoA .focusArea{ height:130px;}
-#demoA .focusCon{ height:130px;}
-#demoA .focusCon .item{ float:left; width:186px; position:relative;}
-#demoA .focusCon .item img{ width:186px; height:126px; }
-#demoA .focusCon .title{ width:186px; bottom:-27px;}
+.isCarousel .focusArea, .isCarousel .focusCon{ height:130px;}
+.isCarousel .focusCon .item{ float:left; width:186px; height:126px; _display:inline;}
+.isCarousel .focusCon .title{ width:186px;}
 
-#demoB { height:130px;}
-#demoB .focusArea{ height:130px;}
-#demoB .focusCon{ height:130px;}
-#demoB .focusCon .item{ float:left; width:186px; position:relative;}
-#demoB .focusCon .item img{ width:186px; height:126px; }
-#demoB .focusCon .title{ width:186px; bottom:1px;}
+.isFocus .focusArea, .isFocus .focusCon{ height:330px;}
+.isFocus .focusCon .item{ width:582px; height:326px;}
+.isFocus .focusCon .title{ width:582px;}
 
-#demoC { height:152px;}
-#demoC .focusArea{ height:130px;}
-#demoC .focusCon{ height:130px;}
-#demoC .focusCon .item{ float:left; width:186px; position:relative;}
-#demoC .focusCon .item img{ width:186px; height:126px; }
-#demoC .focusCon .title{ width:186px; bottom:1px;}
+/* = 特殊内容特殊处理
+-------------------------------------------------------------- */
+.demoB .focusCon .title{ bottom:-27px;}
 
-#demoD { height:352px;}
-#demoD .focusArea{ height:330px;}
-#demoD .focusCon{ height:330px;}
-#demoD .focusCon .item{ float:left; width:582px; position:relative;}
-#demoD .focusCon .item img{ width:582px; height:326px;}
-#demoD .focusCon .title{ width:582px; bottom:1px;}
+.demoD .focusCon .item{ float:left; _display:inline;}
 
-#demoE { height:352px;}
-#demoE .focusArea{ height:330px;}
-#demoE .focusCon{ height:330px;}
-#demoE .focusCon .item{ width:582px; position:absolute; top:0; left:0; }
-#demoE .focusCon .item img{ width:582px; height:326px;}
-#demoE .focusCon .title{ width:582px; bottom:1px;}
+.demoE .focusCon{ overflow:visible;}
+
+.demoF .focusCon .item{ display:none; position:absolute; top:0; left:0; }
+
+.demoG .focusCon .item{ display:none; position:absolute; top:0; left:0; }
+.demoG .focusIndicators{ height:42px;}
+.demoG .focusIndicators a{ width:60px; height:40px; margin:0 2px; border:1px solid #000; background:none;}
+.demoG .focusIndicators .current{ border:1px solid #FFF;}

@@ -1,14 +1,10 @@
 (function($){
-	$(function() {
 	/*!
 	* Ublue jQuery Image Carousel
 	* Copyright (c) 2013, 梦幻神化
-	* Create:2013.06.03
-	* Version:1.3.3 beta
-	* Update:1.3.0 beta（1.增加小按钮的触发条件 2.性能优化，小按钮和滚动标题，鼠标停留150ms后才执行）
-	* Update:1.3.1 beta（1.语句优化）
-	* Update:1.3.2 beta（1.兼容性调整）
-	* Update:1.3.3 beta（1.修复一个错误的判断条件）
+	* Create: 2013.08.08
+	* Version: 2.0
+	* Update: 1.新增上下滚动和缩略图模式 2.部分语句重新定义 3.逻辑优化 4.更为精简
 	*
 	* 请保留此信息，如果您有修改或意见可通过网站给我留言
 	* http://www.bluesdream.com
@@ -18,160 +14,138 @@
 		// options
 		var opts = $.extend({
 			// Dom节点
-			ubMain:".focusMain",		// 最外层框架
-			ubCon:".focusCon",		// 内容和定位层
-			ubItem:".item",				// 列表项
-			ubBullets:".focusBullets",	// 小按钮
-			ubPrev:".focusPrev",		// 向上按钮
-			ubNext:".focusNext",		// 向下按钮
+			ubCon:".focusCon",				// 内容（滚动时以该层做定位）
+			ubItem:".item",						// 列表项
+			ubIndicators:".focusIndicators",	// 小按钮
+			ubPrev:".focusPrev",				// 向上按钮
+			ubNext:".focusNext",				// 向下按钮
 			// 效果展现 （开启/关闭参数：on/off）
-			ubLen:"off",				// 多图滚动（列表项总数：配合ubDistance滚动距离一起使用）
-			ubDistance:"off",			// 多图滚动（滚动距离：按每行最大显示容量计算）
-			ubAuto:"on",				// 是否自动播放
-			ubTitleHover:"off",			// 标题是否滑动显示
-			ubEffect:"off",				// 是否使用滤镜效果
-			ubHover:"on",				// 小按钮经触发条件
+			ubEffect:"left",						// 效果呈现方式 "left" "top" "fade"
+			ubTrigger:"hover",					// 小按钮经触发条件 "hover" "click"
+			ubAutoPlay:"on",					// 是否自动播放
+			ubAutoBtn:"on",					// 小按钮是否自动生成（便于做成缩略图形式）
+			ubTitleHover:"off",					// 标题是否滑动显示
+			ubMode:"off",						// 是否开启多图滚动
 			// 时间设置 （按毫秒计算：1000毫秒=1秒）
-			ubTime:5000,				// 自动播放的时间间隔
-			ubSpeed:400,				// 图片切换的速度
-			ubTitleSpeed:50			// 标题滑动显示的速度
+			ubTime:5000,						// 自动播放的时间间隔
+			ubSpeed:400,						// 图片切换的速度
+			ubTitleSpeed:50					// 标题滑过显示的速度
 		}, opts);
 		var $stpe = 0,
 			$ubCon 		= $this.find(opts.ubCon),
 			$ubItem 		= $this.find(opts.ubItem),
-			$ubBullets 		= $this.find(opts.ubBullets),
+			$ubIndicators 	= $this.find(opts.ubIndicators),
 			$ubCount 		= $ubItem.length,
 			$ubItemW 		= $ubItem.outerWidth(true),
+			$ubItemH 		= $ubItem.outerHeight(true),
 			$ubConW 		= $ubItemW * $ubCount,
 			$ubMax 		= Math.floor( $ubCon.width()/$ubItemW ),
-			$ubDistance 	= opts.ubDistance=="off"?1:$ubMax,
-			$ubLen 		= opts.ubLen=="off"?$ubCount:$ubMax,
-			$ubJudge 		= opts.ubLen=="off"?$ubLen-$ubMax:$ubCount/$ubMax-1;
+			$ubDistance 	= opts.ubMode=="off"?1:$ubMax,
+			$ubMode 		= opts.ubMode=="off"?$ubCount:$ubMax,
+			$ubJudge 		= opts.ubMode=="off"?$ubMode-$ubMax:$ubCount/$ubMax-1;
 		// Initialization
-		$ubCon.css("width",$ubConW);
-		$ubItem.each(function(i) {
-			if ( i <= $ubJudge) {
-				$(this).css("z-index", -(i - $ubCount));
-				$ubBullets.append("<a>" + (i + 1) + "</a>");
-				$ubBullets.find("a").eq(0).addClass("current");
-			}
-		});
-		var $ubBulletsBtn = $ubBullets.find("a");
-		// AutoPlay
-		function focusAutoPlay() {
-			if ( opts.ubAuto == "on") {
-				nextSwitch();
-			};
+		if ( opts.ubAutoBtn == "on" ) {
+			$ubItem.each(function(i) {
+				if ( i <= $ubJudge) {
+					$ubIndicators.append("<a>" + (i + 1) + "</a>");
+				}
+			});
 		};
-		var $autoScroll = setInterval(focusAutoPlay, opts.ubTime);
-		$this.hover(function() {
-			clearInterval($autoScroll);
-		}, function() {
-			$autoScroll = setInterval(focusAutoPlay, opts.ubTime);
-		});
+		if ( opts.ubEffect == "left" || "top" ) {
+			$ubCon.css("width",$ubConW);
+		}
+		if ( opts.ubEffect == "fade" ) {
+			$ubItem.eq(0).show();
+		}
+		var $ubIndicatorsBtn = $ubIndicators.find("a");
+		$ubIndicatorsBtn.eq(0).addClass('current');
+		// AutoPlay
+		if ( opts.ubAutoPlay == "on") {
+			function focusAutoPlay() { nextSwitch() };
+			var $autoScroll = setInterval(focusAutoPlay, opts.ubTime);
+			$this.hover(function() {
+				clearInterval($autoScroll);
+			}, function() {
+				$autoScroll = setInterval(focusAutoPlay, opts.ubTime);
+			});
+		};
 		// Title Hide/Show
 		if ( opts.ubTitleHover == "on") {
 			var $hideSpacing = parseInt( $ubItem.find(".title").css("bottom")) ;
 			var $showSpacing = $hideSpacing + $ubItem.find(".title").outerHeight(true);
 			$ubItem.hover(function(){
 				var $this = $(this);
-				hoverTime = setTimeout(function() {
+				titleDelay = setTimeout(function() {
 					$this.find(".title").stop(true,false).animate({"bottom":Math.abs( $showSpacing )},opts.ubTitleSpeed);
 				}, 150);
 			},function(){
 				$(this).find(".title").stop(true,false).animate({"bottom":$hideSpacing},opts.ubTitleSpeed);
-				clearTimeout(hoverTime);
+				clearTimeout(titleDelay);
 			});
 		};
-		// Switch & Effect
+		// Switch
+		function effectSwitch(op){
+			if ( opts.ubEffect == "fade" ) {
+				$ubItem.eq(op).fadeIn(opts.ubSpeed).siblings().fadeOut(opts.ubSpeed);
+			}else if( opts.ubEffect == "left" ){
+				var $left = op*$ubDistance*$ubItemW;
+				$ubCon.animate({"left":-$left},opts.ubSpeed);
+			}else{
+				var $top = op*$ubDistance*$ubItemH;
+				$ubCon.animate({"top":-$top},opts.ubSpeed);
+			}
+			indicatorsStyle($stpe)
+		}
 		function nextSwitch(){
 			if ( !$ubCon.is(":animated") && !$ubItem.is(":animated") ) {
 				if ( $stpe == $ubJudge) {
 					$stpe = 0
-					if ( opts.ubEffect == "on" ) {
-						filterSwitch($stpe)
-					}else{
-						$ubCon.animate({"left":$stpe},opts.ubSpeed);
-					};
+					effectSwitch($stpe)
 				}else{
 					$stpe++
-					if ( opts.ubEffect == "on" ) {
-						$ubItem.eq($stpe-1).fadeOut('slow').next().fadeIn('slow');
-					}else{
-						slideSwitch($stpe);
-					};
+					effectSwitch($stpe)
 				}
 			}
-			bulletsStyle($stpe);
 		}
-		function bulletsStyle(mark){
-			$ubBulletsBtn.eq(mark).addClass("current").siblings().removeClass("current");
-		}
-		function bulletsSwitch(op){
-			$stpe = op;
-			if ( $stpe == 0 ){
-				if ( opts.ubEffect == "on" ) {
-					$ubItem.eq(0).fadeIn();
+		function indicatorsSwitch(op){
+			if ( !$ubCon.is(":animated") && !$ubItem.is(":animated") ) {
+				$stpe = op;
+				if ( $stpe == 0 ){
+					effectSwitch($stpe)
 				}else{
-					$ubCon.animate({"left":$stpe},opts.ubSpeed);
-				}
-			}else{
-				if ( opts.ubEffect == "on" ) {
-					filterSwitch($stpe)
-				}else{
-					slideSwitch($stpe);
+					effectSwitch($stpe)
 				}
 			}
-			bulletsStyle($stpe);
 		}
-		function filterSwitch(op){
-			$ubItem.eq(op).fadeIn('slow').siblings().fadeOut('slow');
+		function indicatorsStyle(op){
+			$ubIndicatorsBtn.eq(op).addClass("current").siblings().removeClass("current");
 		}
-		function slideSwitch(op){
-			var $left = op*$ubDistance*$ubItemW;
-			$ubCon.animate({"left":-$left},opts.ubSpeed);
-		}
-		// Click
+		// Trigger
 		$this.find(opts.ubPrev).click(function() {
 			if ( !$ubCon.is(":animated") && !$ubItem.is(":animated") ) {
 				if ( $stpe == 0 ) {
 					$stpe = $ubJudge;
-					if ( opts.ubEffect == "on" ) {
-						filterSwitch($stpe)
-					}else{
-						slideSwitch($stpe)
-					};
+					effectSwitch($stpe)
 				}else{
 					$stpe--
-					if ( opts.ubEffect == "on" ) {
-						$ubItem.eq($stpe).fadeIn('slow');
-					}else{
-						slideSwitch($stpe);
-					};
+					effectSwitch($stpe)
 				}
 			}
-			bulletsStyle($stpe);
 		});
 		$this.find(opts.ubNext).click(function() {
 			nextSwitch();
 		});
-		if ( opts.ubHover == "on" ) {
-			$ubBulletsBtn.each(function(e) {
-				$(this).hover(function() {
-					hoverTime2 = setTimeout(function() {
-						bulletsSwitch(e);
-					}, 150);
-				},function(){
-					clearTimeout(hoverTime2);
-				});
-			})
+		if ( opts.ubTrigger == "hover" ) {
+			$ubIndicatorsBtn.hover(function() {
+				var i = $(this).index()
+				triggerDelay = setTimeout(function() { indicatorsSwitch(i) }, 150);
+			},function(){
+				clearTimeout(triggerDelay);
+			});
 		}else{
-			$ubBulletsBtn.click(function() {
-				$stpe = $(this).index();
-				bulletsSwitch($stpe);
+			$ubIndicatorsBtn.click(function() {
+				indicatorsSwitch($(this).index());
 			})
 		}
 	};
-
-	});
 }(jQuery));
