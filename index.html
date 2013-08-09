@@ -29,37 +29,37 @@ $(function() {
 	ubTitleSpeed:50					// 标题滑过显示的速度
 	=====================================================
 	*/
-	$(".demoA").ublue_ImageCarousel();
+	$(".demoA").ublue_ImageCarousel(); 	//默认调用方式（使用默认参数）
 
 	$(".demoB").ublue_ImageCarousel({
-		ubAutoPlay:"off", // 取消自动滚动
-		ubTitleHover:"on" // 标题hover显示
+		ubAutoPlay:"off", 		// 关闭自动播放
+		ubTitleHover:"on" 		// 标题hover显示
 	});
 
 	$(".demoC").ublue_ImageCarousel({
-		ubAutoPlay:"off",  // 取消自动滚动
-		ubMode:"on",  // 多图滚动
-		ubTrigger:"click" // 小按钮点击切换
+		ubAutoPlay:"off", 		// 关闭自动播放
+		ubTrigger:"click", 		// 小按钮点击切换
+		ubMode:"on" 			// 开启多图滚动
 	});
 
 	$(".demoD").ublue_ImageCarousel({
-		ubAutoPlay:"off" // 取消自动滚动
+		ubAutoPlay:"off" 		// 关闭自动播放
 	});
 
 	$(".demoE").ublue_ImageCarousel({
-		ubAutoPlay:"off", // 取消自动滚动
-		ubEffect:"top"
+		ubAutoPlay:"off", 		// 关闭自动播放
+		ubEffect:"top" 			// 图片切换方式为上下滚动
 	});
 
 	$(".demoF").ublue_ImageCarousel({
-		ubAutoPlay:"off", // 取消自动滚动
-		ubEffect:"fade"
+		ubAutoPlay:"off", 		// 关闭自动播放
+		ubEffect:"fade" 		// 图片切换方式为渐变（淡入淡出）
 	});
 
 	$(".demoG").ublue_ImageCarousel({
-		ubAutoPlay:"off", // 取消自动滚动
-		ubEffect:"fade", // 小按钮是否自动生成
-		ubAutoBtn:"off" // 小按钮不自动生成（手工做成缩略图形式）
+		ubAutoPlay:"off", 		// 关闭自动播放
+		ubEffect:"fade", 		// 图片切换方式为渐变（淡入淡出）
+		ubAutoBtn:"off" 		// 小按钮不自动生成（手工做成缩略图形式）
 	});
 });
 </script>
