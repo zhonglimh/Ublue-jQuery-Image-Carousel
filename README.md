@@ -28,7 +28,7 @@ Dom节点
 	ubTitleSpeed:50						// 标题滑过显示的速度
 
 使用和设置方法（示例）：
-	$(".demoA").ublue_ImageCarousel();
+		$(".demoA").ublue_ImageCarousel();
 
 	$(".demoB").ublue_ImageCarousel({
 		ubAutoPlay:"off", // 取消自动滚动
