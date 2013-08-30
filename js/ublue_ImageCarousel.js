@@ -108,13 +108,11 @@
 			}
 		}
 		function indicatorsSwitch(op){
-			if ( !$ubCon.is(":animated") && !$ubItem.is(":animated") ) {
-				$stpe = op;
-				if ( $stpe == 0 ){
-					effectSwitch($stpe)
-				}else{
-					effectSwitch($stpe)
-				}
+			$stpe = op;
+			if ( $stpe == 0 ){
+				effectSwitch($stpe)
+			}else{
+				effectSwitch($stpe)
 			}
 		}
 		function indicatorsStyle(op){
