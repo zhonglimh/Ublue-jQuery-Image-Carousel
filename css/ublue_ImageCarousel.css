@@ -1,17 +1,15 @@
 /* = 全局
 -------------------------------------------------------------- */
-*{margin:0; padding:0;}
 body{ font:12px/18px Arial,\5FAE\8F6F\96C5\9ED1; background:url(../images/bg.png); padding-bottom:100px;}
 h2{ padding:80px 0 20px 0; text-align:center; font-size:16px; color:#444;}
-a{ text-decoration:none;}
 
 /* = 通用布局
 -------------------------------------------------------------- */
 .focusBtn, .focusIndicators a{ display:block; background:url(../images/script.png); background-repeat:no-repeat;}
-.focusMain{ width:650px; position:relative; margin:0 auto; overflow:hidden;}
+.focusMain{ width:650px; position:relative; margin:0 auto;}
 .focusArea{ width:594px; margin:0 auto 15px; position:relative; overflow:hidden;}
-.focusCon{ width:594px; position:absolute; overflow:hidden;}
-.focusCon .item{ position:relative; margin:0 4px; padding:1px; border:1px solid #666; background:#DDDEDE;}
+.focusCon{ width:594px; position:absolute; top:0;}
+.focusItem{ position:relative; margin:0 4px; padding:1px; border:1px solid #666; background:#DDDEDE;}
 .focusCon .title{ height:26px; position:absolute; left:1px; bottom:1px; background:#000; opacity:.8; filter:Alpha(opacity=80); line-height:26px; font-size:14px; font-weight:400; overflow: hidden;}
 .focusCon .title a{ display:block; padding:0 10px; color:#FFF; position:relative;}
 .focusIndicators{ height:7px; font-size:0; line-height:0; text-align:center;}
@@ -21,29 +19,38 @@ a{ text-decoration:none;}
 .focusPrev{ left:0; background-position:0 0;}
 .focusNext{ right:0; background-position:-30px 0;}
 .focusPrev:hover, .focusNext:hover{ background-color:#333;}
-.focusCon .item img, .focusIndicators img{ width:100%; height:100%; }
+.focusItem img, .focusIndicators img{ width:100%; height:100%;}
 
 /* = 轮播和焦点图区分
 -------------------------------------------------------------- */
-.isCarousel .focusArea, .isCarousel .focusCon{ height:130px;}
-.isCarousel .focusCon .item{ float:left; width:186px; height:126px; _display:inline;}
+.isCarousel .focusArea{ height:130px;}
+.isCarousel .focusItem{ float:left; width:186px; height:126px; _display:inline;}
 .isCarousel .focusCon .title{ width:186px;}
+.isCarousel .focusGroup{ float:left; _display:inline;}
 
-.isFocus .focusArea, .isFocus .focusCon{ height:330px;}
-.isFocus .focusCon .item{ width:582px; height:326px;}
+.isFocus .focusArea{ height:330px;}
+.isFocus .focusItem{ width:582px; height:326px;}
 .isFocus .focusCon .title{ width:582px;}
 
 /* = 特殊内容特殊处理
 -------------------------------------------------------------- */
 .demoB .focusCon .title{ bottom:-27px;}
 
-.demoD .focusCon .item{ float:left; _display:inline;}
+.demoD .focusItem{ float:left; _display:inline;}
 
-.demoE .focusCon{ overflow:visible;}
+.demoF .focusItem{ display:none; position:absolute; top:0; left:0; }
 
-.demoF .focusCon .item{ display:none; position:absolute; top:0; left:0; }
-
-.demoG .focusCon .item{ display:none; position:absolute; top:0; left:0; }
+.demoG .focusItem{ display:none; position:absolute; top:0; left:0; }
 .demoG .focusIndicators{ height:42px;}
 .demoG .focusIndicators a{ width:60px; height:40px; margin:0 2px; border:1px solid #000; background:none;}
 .demoG .focusIndicators .current{ border:1px solid #FFF;}
+
+.demoJ .focusItem{ float:left; _display:inline;}
+.demoJ .focusIndicators{ height:42px;}
+.demoJ .focusIndicators a{ width:60px; height:40px; margin:0 2px; border:1px solid #000; background:none;}
+.demoJ .focusIndicators .current{ border:1px solid #FFF;}
+
+.demoK .focusArea{ width:190px; height:390px; margin:0 auto;}
+.demoK .focusItem{ width:186px; height:126px; margin:0;}
+.demoK .focusCon{ width:190px;}
+.demoK .focusCon .title{ width:186px;}
