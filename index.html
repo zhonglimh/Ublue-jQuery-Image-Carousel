@@ -3,63 +3,94 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>Ublue jQuery Image Carousel（焦点图&amp;图片轮播） - 蓝色梦想</title>
+<!-- mode -->
+<meta name="keywords" content="jquery,css,css3,image carousel,slideshow,focus image" />
+<meta name="description" content="Ublue jQuery Image Carousel（焦点图&amp;图片轮播）" />
+<meta name="author" id="articleUrl" content="蓝色梦想,www.bluesdream.com/blog/ublue-jquery-image-carousel.html" />
+<link rel="stylesheet" href="http://www.bluesdream.com/case/default.css">
+<script src="http://www.bluesdream.com/case/default.js"></script>
+<!-- mode end-->
 <link rel="stylesheet" href="css/ublue_ImageCarousel.css" />
 <script src="http://file.bluesdream.com/js/jquery-1.8.3.min.js"></script>
 <script src="js/ublue_ImageCarousel.js"></script>
 <script>
 $(function() {
 	/* 设置和说明：
-	=====================================================
-	// Dom节点
-	ubCon:".focusCon",				// 内容（滚动时以该层做定位）
-	ubItem:".item",						// 列表项
-	ubIndicators:".focusIndicators",	// 小按钮
-	ubPrev:".focusPrev",				// 向上按钮
-	ubNext:".focusNext",				// 向下按钮
-	// 效果展现 （开启/关闭参数：on/off）
-	ubEffect:"left",						// 效果呈现方式 "left" "top" "fade"
-	ubTrigger:"hover",					// 小按钮经触发条件 "hover" "click"
-	ubAutoPlay:"on",					// 是否自动播放
-	ubAutoBtn:"on",					// 小按钮是否自动生成（便于做成缩略图形式）
-	ubTitleHover:"off",					// 标题是否滑动显示
-	ubMode:"off",						// 是否开启多图滚动
-	// 时间设置 （按毫秒计算：1000毫秒=1秒）
-	ubTime:5000,						// 自动播放的时间间隔
-	ubSpeed:400,						// 图片切换的速度
-	ubTitleSpeed:50					// 标题滑过显示的速度
-	=====================================================
+		=====================================================
+		// Dom节点
+		ubArea:'.focusArea',				// 外层（上下无缝滚动时，以该层做定位）
+		ubCon:'.focusCon',					// 内容（滚动时以该层做定位）
+		ubItem:'.focusItem',				// 列表项
+		ubIndicators:'.focusIndicators',		// 小按钮
+		ubPrev:'.focusPrev',					// 向上按钮
+		ubNext:'.focusNext',				// 向下按钮
+		// 效果展现 （以下为默认值）
+		ubEffect:'left',						// 效果呈现方式 'left' 'top' 'fade' 'leftSeamless' 'topSeamless'
+		ubTrigger:'hover',					// 小按钮经触发条件 'hover' 'click'
+		ubAutoPlay:'on',					// 是否自动播放
+		ubAutoBtn:'on',						// 小按钮是否自动生成（便于做成缩略图形式）
+		ubTitleHover:'off',					// 标题是否滑动显示
+		ubGallery:'off',						// 是否开启多图滚动
+		// 时间设置 （按毫秒计算：1000毫秒=1秒）
+		ubTime:5000,						// 自动播放的时间间隔
+		ubSpeed:480,						// 图片切换的速度
+		ubTitleSpeed:50					// 标题滑过显示的速度
+		=====================================================
 	*/
 	$(".demoA").ublue_ImageCarousel(); 	//默认调用方式（使用默认参数）
 
 	$(".demoB").ublue_ImageCarousel({
-		ubAutoPlay:"off", 		// 关闭自动播放
-		ubTitleHover:"on" 		// 标题hover显示
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubTitleHover:"on" 			// 标题hover显示
 	});
 
 	$(".demoC").ublue_ImageCarousel({
-		ubAutoPlay:"off", 		// 关闭自动播放
-		ubTrigger:"click", 		// 小按钮点击切换
-		ubMode:"on" 			// 开启多图滚动
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubTrigger:"click", 			// 小按钮点击切换
+		ubGallery:"on" 				// 开启多图滚动
 	});
 
 	$(".demoD").ublue_ImageCarousel({
-		ubAutoPlay:"off" 		// 关闭自动播放
+		ubAutoPlay:"off" 				// 关闭自动播放
 	});
 
 	$(".demoE").ublue_ImageCarousel({
-		ubAutoPlay:"off", 		// 关闭自动播放
-		ubEffect:"top" 			// 图片切换方式为上下滚动
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubEffect:"top" 				// 图片切换方式为上下滚动
 	});
 
 	$(".demoF").ublue_ImageCarousel({
-		ubAutoPlay:"off", 		// 关闭自动播放
-		ubEffect:"fade" 		// 图片切换方式为渐变（淡入淡出）
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubEffect:"fade" 			// 图片切换方式为渐变（淡入淡出）
 	});
 
 	$(".demoG").ublue_ImageCarousel({
-		ubAutoPlay:"off", 		// 关闭自动播放
-		ubEffect:"fade", 		// 图片切换方式为渐变（淡入淡出）
-		ubAutoBtn:"off" 		// 小按钮不自动生成（手工做成缩略图形式）
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubEffect:"fade", 			// 图片切换方式为渐变（淡入淡出）
+		ubAutoBtn:"off" 			// 小按钮不自动生成（手工做成缩略图形式）
+	});
+
+	$(".demoH").ublue_ImageCarousel({
+		ubAutoPlay:"off",			// 关闭自动播放
+		ubEffect:"leftSeamless"		// 图片切换方式为无缝滚动
+	});
+
+	$(".demoI").ublue_ImageCarousel({
+		ubAutoPlay:"off",			// 关闭自动播放
+		ubEffect:"leftSeamless",	// 图片切换方式为无缝滚动
+		ubGallery:"on"				// 开启多图滚动
+	});
+
+	$(".demoJ").ublue_ImageCarousel({
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubEffect:"leftSeamless",	// 图片切换方式为无缝滚动
+		ubAutoBtn:"off" 			// 小按钮不自动生成（手工做成缩略图形式）
+	});
+
+	$(".demoK").ublue_ImageCarousel({
+		ubAutoPlay:"off", 			// 关闭自动播放
+		ubEffect:"topSeamless",	// 图片切换方式为无缝滚动
+		ubAutoBtn:"off" 			// 小按钮不自动生成（手工做成缩略图形式）
 	});
 });
 </script>
@@ -70,27 +101,27 @@ $(function() {
 <div class="focusMain isCarousel demoA">
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
@@ -103,63 +134,64 @@ $(function() {
 <h2>B. 图片轮播：单张滚动、无小按钮、标题hover显示</h2>
 <div class="focusMain isCarousel demoB">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
 		</div>
 	</div>
-	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
 <h2>C. 图片轮播：多张滚动、小按钮点击切换</h2>
 <div class="focusMain isCarousel demoC">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
@@ -167,35 +199,35 @@ $(function() {
 	</div>
 	<div class="focusIndicators">
 	</div>
-	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
 <h2>D. 焦点图：左右滚动</h2>
 <div class="focusMain isFocus demoD">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
@@ -203,35 +235,35 @@ $(function() {
 	</div>
 	<div class="focusIndicators">
 	</div>
-	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
 <h2>E. 焦点图：向上下滚动</h2>
 <div class="focusMain isFocus demoE">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
@@ -239,35 +271,35 @@ $(function() {
 	</div>
 	<div class="focusIndicators">
 	</div>
-	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
 <h2>F. 焦点图：渐变显示</h2>
 <div class="focusMain isFocus demoF">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
@@ -275,35 +307,35 @@ $(function() {
 	</div>
 	<div class="focusIndicators">
 	</div>
-	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
 <h2>G. 焦点图：渐变显示、小按钮(缩略图)手工填写</h2>
 <div class="focusMain isFocus demoG">
 	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
 	<div class="focusArea">
 		<div class="focusCon">
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Space base</a></h4>
 				<a href="#"><img src="images/img1.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Festival Hall</a></h4>
 				<a href="#"><img src="images/img2.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
 				<a href="#"><img src="images/img3.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Railroad bridge</a></h4>
 				<a href="#"><img src="images/img4.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Midosuji line</a></h4>
 				<a href="#"><img src="images/img5.jpg" alt="" /></a>
 			</div>
-			<div class="item">
+			<div class="focusItem">
 				<h4 class="title"><a href="#">Sky building</a></h4>
 				<a href="#"><img src="images/img6.jpg" alt="" /></a>
 			</div>
@@ -317,9 +349,155 @@ $(function() {
 		<a href="javascript:;"><img src="images/img5.jpg" alt="" /></a>
 		<a href="javascript:;"><img src="images/img6.jpg" alt="" /></a>
 	</div>
-	<a class="focusBtn focusNext" href="javascript:;"></a>
 </div>
 
-<!-- <div id="statistics"><script src="http://s9.cnzz.com/stat.php?id=1734797&web_id=1734797" language="JavaScript"></script></div> -->
+<h2>H. 图片轮播：无缝左右滚动</h2>
+<div class="focusMain isCarousel demoH">
+	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
+	<div class="focusArea">
+		<div class="focusCon">
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Space base</a></h4>
+				<a href="#"><img src="images/img1.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Festival Hall</a></h4>
+				<a href="#"><img src="images/img2.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
+				<a href="#"><img src="images/img3.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Railroad bridge</a></h4>
+				<a href="#"><img src="images/img4.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Midosuji line</a></h4>
+				<a href="#"><img src="images/img5.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Sky building</a></h4>
+				<a href="#"><img src="images/img6.jpg" alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="focusIndicators">
+	</div>
+</div>
+
+<h2>I. 图片轮播：无缝多张滚动</h2>
+<div class="focusMain isCarousel demoI">
+	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
+	<div class="focusArea">
+		<div class="focusCon">
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Space base</a></h4>
+				<a href="#"><img src="images/img1.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Festival Hall</a></h4>
+				<a href="#"><img src="images/img2.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
+				<a href="#"><img src="images/img3.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Railroad bridge</a></h4>
+				<a href="#"><img src="images/img4.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Midosuji line</a></h4>
+				<a href="#"><img src="images/img5.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Sky building</a></h4>
+				<a href="#"><img src="images/img6.jpg" alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="focusIndicators">
+	</div>
+</div>
+
+<h2>J. 焦点图：无缝左右滚动</h2>
+<div class="focusMain isFocus demoJ">
+	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
+	<div class="focusArea">
+		<div class="focusCon">
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Space base</a></h4>
+				<a href="#"><img src="images/img1.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Festival Hall</a></h4>
+				<a href="#"><img src="images/img2.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
+				<a href="#"><img src="images/img3.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Railroad bridge</a></h4>
+				<a href="#"><img src="images/img4.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Midosuji line</a></h4>
+				<a href="#"><img src="images/img5.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Sky building</a></h4>
+				<a href="#"><img src="images/img6.jpg" alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="focusIndicators">
+		<a href="javascript:;"><img src="images/img1.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img2.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img3.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img4.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img5.jpg" alt="" /></a>
+		<a href="javascript:;"><img src="images/img6.jpg" alt="" /></a>
+	</div>
+</div>
+
+<h2>K. 焦点图：无缝上下滚动</h2>
+<div class="focusMain demoK">
+	<a class="focusBtn focusPrev" href="javascript:;"></a>
+	<a class="focusBtn focusNext" href="javascript:;"></a>
+	<div class="focusArea">
+		<div class="focusCon">
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Space base</a></h4>
+				<a href="#"><img src="images/img1.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Festival Hall</a></h4>
+				<a href="#"><img src="images/img2.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Airplane at sunset</a></h4>
+				<a href="#"><img src="images/img3.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Railroad bridge</a></h4>
+				<a href="#"><img src="images/img4.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Midosuji line</a></h4>
+				<a href="#"><img src="images/img5.jpg" alt="" /></a>
+			</div>
+			<div class="focusItem">
+				<h4 class="title"><a href="#">Sky building</a></h4>
+				<a href="#"><img src="images/img6.jpg" alt="" /></a>
+			</div>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
